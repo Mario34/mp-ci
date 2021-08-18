@@ -1,0 +1,32 @@
+{
+  "name": "@mario34/mp-ci",
+  "version": "0.0.1",
+  "description": "小程序代码上传脚本，持续集成",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "bin": {
+    "mario34-mp-ci": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mario34/mp-ci.git"
+  },
+  "keywords": [
+    "mini-program",
+    "mp-cli"
+  ],
+  "author": "Mario34",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mario34/mp-cli/issues"
+  },
+  "homepage": "https://github.com/Mario34/mp-cli#readme",
+  "dependencies": {
+    "miniprogram-ci": "^1.5.1"
+  },
+  "devDependencies": {
+    "@mario34/lint-config": "^0.1.3"
+  }
+}
