@@ -1,6 +1,6 @@
 {
   "name": "@mario34/mp-ci",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "小程序代码上传脚本，持续集成",
   "main": "src/index.js",
   "scripts": {
