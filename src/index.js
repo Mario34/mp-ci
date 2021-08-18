@@ -5,7 +5,7 @@ const privateKey = utils.getCliArg('--key')
 const branch = utils.getCliArg('--branch')
 const packageJson = require(utils.pathResolve('package.json'))
 
-const config = packageJson['mp-cli']
+const config = packageJson['mp-ci']
 
 if (!branch || !privateKey) {
   console.error('缺少必要参数 --key 或 --branch')

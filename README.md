@@ -41,4 +41,4 @@ version-*.*.* => ci 机器人`${version.patch}`，patch为0时取27
 
 ## 持续集成
 
-
+以gitLab为例，在ci脚本中添加 `npm run mp-ci --key ${key_path} --branch ${CI_COMMIT_BRANCH}`
