@@ -4,33 +4,26 @@ const utils = require('./utils')
 const privateKey = utils.getCliArg('--key')
 const branch = utils.getCliArg('--branch')
 const packageJson = require(utils.pathResolve('package.json'))
-const fs = require('fs')
 
-const config = packageJson['mp-ci'] || {
-  appid: 'ddd',
-  keyType: 'raw',
-  projectPath: '000/999',
+const config = {
+  type: 'miniProgram',
+  ignores: ['node_modules/**/*'],
+  keyType: 'file',
+  ...(packageJson['mp-ci'] || {}),
 }
 
 if (!branch || !privateKey) {
-  console.error('缺少必要参数 --key 或 --branch')
+  console.error('mp-ci: 缺少必要参数 --key 或 --branch')
   return process.exit(1)
 }
 
-let privateKeyPath = privateKey
 if (config.keyType === 'raw') {
-  const keyPath = utils.pathResolve('./private.key')
-  fs.writeFileSync(keyPath, privateKey)
-  privateKeyPath = keyPath
+  config.privateKey = privateKey
+} else {
+  config.privateKeyPath = privateKey
 }
 
-const project = new ci.Project({
-  appid: config.appid,
-  type: 'miniProgram',
-  projectPath: utils.pathResolve(config.projectPath),
-  privateKeyPath,
-  ignores: ['node_modules/**/*'],
-})
+const project = new ci.Project(config)
 
 const baseConfig = () => ({
   project,
