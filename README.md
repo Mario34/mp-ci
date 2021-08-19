@@ -18,7 +18,8 @@ yarn add @mario34/mp-ci -D
   },
   "mp-ci": {
     "appid": "小程序appid",
-    "projectPath": "项目地址(相对process.cwd()目录的文件路径)"
+    "projectPath": "项目地址(相对process.cwd()目录的文件路径)",
+    "keyType": "file"
   }
 }
 ```
@@ -31,7 +32,7 @@ yarn add @mario34/mp-ci -D
 
 需要规范化分支命名
 
-- --key: 密钥文件路径
+- --key: 上传密钥文件路径
 - --branch: 分支名称(分支名称将会被用作生成机器人号码)
 
 ```
@@ -41,4 +42,11 @@ version-*.*.* => ci 机器人`${version.patch}`，patch为0时取27
 
 ## 持续集成
 
-以gitLab为例，在ci脚本中添加 `npm run mp-ci --key ${key_path} --branch ${CI_COMMIT_BRANCH}`
+- gitLab
+
+在CI/CD设置中配置添加变量，这里需要的是路径，所以变量类型设置为`file`, 在ci脚本中添加 `npm run mp-ci --key ${key_path} --branch ${CI_COMMIT_BRANCH}`
+
+- github
+
+在仓库`settings/secrets/actions`添加上传密钥，这里只能给添加文本类型的密钥，所以需要在mp-ci配置中添加`"keyType": "raw"`，在ci脚本中添加 `npm run mp-ci --key ${{ secrets.key }} --branch ${{GITHUB_REF##*/}}`
+
