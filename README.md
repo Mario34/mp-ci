@@ -31,13 +31,13 @@ yarn add @mario34/mp-ci -D
 
 ## config
 
-| 参数        | 描述                   | 类型                                                  | 默认值                | 必填 |
-| ----------- | ---------------------- | ----------------------------------------------------- | --------------------- | ---- |
-| appid       | 小程序 appid           | string                                                | /                     | 是   |
-| projectPath | 上传代码路径           | string                                                | /                     | 是   |
-| type        | 显示指明当前的项目类型 | miniProgram/miniProgramPlugin/miniGame/miniGamePlugin | miniProgram           | 否   |
-| ignores     | 排除的规则             | string[]                                              | ['node_modules/**/*'] | 否   |
-| keyType     | 密钥类型               | file/raw                                              | file                  | 否   |
+| 参数        | 描述                                                                            | 类型     | 默认值                | 必填 |
+| ----------- | ------------------------------------------------------------------------------- | -------- | --------------------- | ---- |
+| appid       | 小程序 appid                                                                    | string   | /                     | 是   |
+| projectPath | 上传代码路径                                                                    | string   | /                     | 是   |
+| type        | 显示指明当前的项目类型 miniProgram、miniProgramPlugin、miniGame、miniGamePlugin | string   | miniProgram           | 否   |
+| ignores     | 排除的规则                                                                      | string[] | ['node_modules/**/*'] | 否   |
+| keyType     | 密钥类型 file/raw                                                               | string   | file                  | 否   |
 
 ## cli 参数
 
