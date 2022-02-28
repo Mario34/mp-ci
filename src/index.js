@@ -32,6 +32,7 @@ const baseConfig = () => ({
   robot: utils.getRobot(branch),
   setting: {
     es6: true,
+    es7: true,
   },
 })
 
