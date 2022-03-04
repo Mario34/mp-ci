@@ -1,10 +1,9 @@
-const execSync = require('child_process').execSync
-const path = require('path')
+import { execSync } from 'child_process'
 
 /**
  * 获取git提交信息
  */
-function getLastCommit() {
+export function getLastCommit() {
   /**
    * 格式同 git log --pretty=format
    * %ae - 邮箱
@@ -17,17 +16,18 @@ function getLastCommit() {
     .trim()
     .toString()
     .split(',')
+  const branch = execSync('git rev-parse --abbrev-ref HEAD')
   const info = keyMap.reduce((pre, cur, index) => {
     pre[cur] = valueMap[index]
     return pre
   }, {})
-  return `[分支]:${getCliArg('--branch')} [更新内容]:${info['%s']} [开发者]:${info['%ae']}`
+  return `[分支]:${branch} [更新内容]:${info['%s']} [开发者]:${info['%ae']}`
 }
 
 /**
  * 获取版本对应机器人号码
  */
-function getRobot(branch) {
+export function getRobot(branch) {
   if (/^release-.+$/.test(branch)) {
     return 30
   }
@@ -39,23 +39,4 @@ function getRobot(branch) {
     return 27
   }
   return valid ? patch : 28
-}
-
-function getCliArg(key) {
-  const args = process.argv
-  const index = args.lastIndexOf(key)
-  if (index !== -1) {
-    return args[index + 1]
-  }
-}
-
-function pathResolve(str) {
-  return path.resolve(process.cwd(), str)
-}
-
-module.exports = {
-  pathResolve,
-  getCliArg,
-  getLastCommit,
-  getRobot,
 }

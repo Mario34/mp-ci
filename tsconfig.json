@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "types": ["node"],
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+  },
+  "include": ["./src", "test/index.spec.js"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
