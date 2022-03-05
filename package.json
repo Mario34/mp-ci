@@ -2,23 +2,24 @@
   "name": "@mario34/mp-ci",
   "version": "0.0.5",
   "description": "微信小程序ci",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "author": "Mario34",
   "license": "MIT",
   "scripts": {
-    "dev": "node --experimental-modules --es-module-specifier-resolution=node ./dist/index.mjs --isDev",
+    "dev": "node --experimental-modules --es-module-specifier-resolution=node ./mp-ci.js --isDev",
     "watch": "rollup --config rollup.config.dev.ts --configPlugin typescript --watch",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "lint": "eslint --ext .ts src",
     "prepare": "husky install"
   },
   "bin": {
-    "mario34-mp-ci": "./lib/index.js"
+    "mario34-mp-ci": "bin/run.sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Mario34/mp-ci.git"
   },
+  "type": "module",
   "keywords": [
     "mini-program",
     "mp-cli"
@@ -26,11 +27,6 @@
   "files": [
     "lib/*"
   ],
-  "type": "module",
-  "exports": {
-    "import": "./lib/esm/index.js",
-    "require": "./lib/cjs/index.js"
-  },
   "bugs": {
     "url": "https://github.com/Mario34/mp-cli/issues"
   },
@@ -44,16 +40,15 @@
     "eslint": "^8.10.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
-    "miniprogram-ci": "^1.8.0",
     "rollup": "^2.69.0",
     "typescript": "^4.6.2"
   },
   "dependencies": {
     "chalk": "^5.0.0",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "miniprogram-ci": "^1.8.0"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,vue}": "eslint --fix",
-    "*.{vue,css,scss}": "stylelint **/*.{css,scss,vue,html} --fix"
+    "*.{ts}": "eslint --fix"
   }
 }

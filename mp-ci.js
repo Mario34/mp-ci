@@ -1,7 +1,8 @@
 import packageJson from './package.json'
 import path from 'path'
+import run from './dist/index.js'
 
-export default {
+run({
   config() {
     return {
       appid: 'wxsomeappid',
@@ -12,18 +13,16 @@ export default {
     }
   },
   formatVersion(info) {
-    console.log(info.git)
+    console.log(info)
     return packageJson.version
   },
-  formatDesc(info) {
-    console.log(info.git)
+  formatDesc() {
     return packageJson.version
   },
   setting() {
     return {
       es6: true,
       es7: true,
-      cli: '123',
     }
   },
-}
+})
