@@ -1,6 +1,6 @@
 # 小程序代码上传 ci
 
-⏱ 小程序持续集成 ci，基于[miniprogram-ci]('https://www.npmjs.com/package/miniprogram-ci')实现
+⏱ 小程序持续集成 ci，基于[miniprogram-ci](https://www.npmjs.com/package/miniprogram-ci)实现
 
 ## 快速配置
 
