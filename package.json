@@ -10,7 +10,8 @@
     "watch": "rollup --config rollup.config.dev.ts --configPlugin typescript --watch",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "lint": "eslint --ext .ts src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "release": "standard-version"
   },
   "bin": {
     "mario34-mp-ci": "bin/run.sh"
@@ -41,6 +42,7 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
     "rollup": "^2.69.0",
+    "standard-version": "^9.3.2",
     "typescript": "^4.6.2"
   },
   "dependencies": {
