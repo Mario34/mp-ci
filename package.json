@@ -51,6 +51,6 @@
     "miniprogram-ci": "^1.8.0"
   },
   "lint-staged": {
-    "*.{ts}": "eslint --fix"
+    "*.ts": "eslint --fix"
   }
 }

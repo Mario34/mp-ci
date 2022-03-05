@@ -2,6 +2,11 @@
 
 ⏱ 小程序持续集成 ci
 
+## 特性
+
+- [x] 项目信息暴露
+- [ ] 机器人版本号默认配置支持
+
 ## 快速配置
 
 - 安装开发依赖
@@ -10,19 +15,37 @@
 yarn add @mario34/mp-ci -D
 ```
 
-- `package.json`添加配置
+- 添加发布脚本 mp-ci.mjs
 
-```json
-{
-  "scripts": {
-    "mp-ci": "mario34-mp-ci"
+```js
+import packageJson from './package.json'
+import path from 'path'
+import run from './dist/index.js'
+
+run({
+  config() {
+    return {
+      appid: 'wxsomeappid',
+      type: 'miniProgram',
+      projectPath: path.resolve(process.cwd(), './dist/'),
+      privateKeyPath: path.resolve(process.cwd(), './dist/'),
+      ignores: ['node_modules/**/*'],
+    }
   },
-  "mp-ci": {
-    "appid": "小程序appid",
-    "projectPath": "项目地址(相对process.cwd()目录的文件路径)",
-    "keyType": "file"
-  }
-}
+  formatVersion() {
+    return packageJson.version
+  },
+  formatDesc(info) {
+    // info包含了项目的部分信息，可以用来定制描述
+    return packageJson.version
+  },
+  setting() {
+    return {
+      es6: true,
+      es7: true,
+    }
+  },
+})
 ```
 
 - 在微信公众平台添加相关配置
