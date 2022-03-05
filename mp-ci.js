@@ -19,10 +19,8 @@ run({
   formatDesc() {
     return packageJson.version
   },
-  setting() {
-    return {
-      es6: true,
-      es7: true,
-    }
+  setting: {
+    es6: true,
+    es7: true,
   },
 })
