@@ -5,26 +5,13 @@ export default defineConfig([
   {
     input: 'src/index.ts',
     output: {
-      dir: 'lib/cjs',
-      format: 'commonjs',
+      format: 'esm',
+      file: 'lib/index.js',
     },
     plugins: [
       tsPlugin({
         tsconfig: './tsconfig.json',
-        outDir: './lib/cjs',
-      }),
-    ],
-  },
-  {
-    input: 'src/index.ts',
-    output: {
-      dir: 'lib/esm',
-      format: 'module',
-    },
-    plugins: [
-      tsPlugin({
-        tsconfig: './tsconfig.json',
-        outDir: './lib/esm',
+        outDir: './',
       }),
     ],
   },
