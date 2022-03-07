@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/Mario34/mp-ci/compare/v1.0.0...v1.1.0) (2022-03-07)
+
+
+### Features
+
+* 添加机器人号码方法 ([615c1ca](https://github.com/Mario34/mp-ci/commit/615c1ca659212f36f5bbf05d5882c038b3c835bb))
+
 ## [1.0.0](https://github.com/Mario34/mp-ci/compare/v0.0.5...v1.0.0) (2022-03-05)
 
 
