@@ -3,7 +3,7 @@ import { execSync } from 'child_process'
 /**
  * 获取git提交信息
  */
-export function getGitInfo() {
+export function getGitInfo(): { branch: string } & Record<string, any> {
   /**
    * git log --pretty=format
    * %ae - 邮箱
@@ -26,4 +26,21 @@ export function getGitInfo() {
     return pre
   }, {})
   return { ...info, branch: String(branch).trim() }
+}
+
+/**
+ * 获取版本对应机器人号码
+ */
+export function getRobot(branch: string): number {
+  if (/^release-.+$/.test(branch)) {
+    return 30
+  }
+  const valid = /^version-([1-9]\d|[1-9])((\.([1-9]\d|\d)){1,2}|(\.([1-9]\d|\d)){2}[^\s]+)$/.test(
+    branch,
+  )
+  const patch = branch.split('.').pop()
+  if (patch === '0') {
+    return 27
+  }
+  return valid ? +patch : 28
 }

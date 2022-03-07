@@ -5,6 +5,14 @@ import * as utils from './utils'
 
 import type { MiniProgramCI } from 'miniprogram-ci/dist/@types/types'
 
+export * from './utils'
+
+export type Info = {
+  git: {
+    branch: string
+  } & Record<string, any>
+}
+
 const argv = minimist(process.argv.slice(2))
 const log = console.log
 const devLog = (...args) => {
@@ -30,31 +38,43 @@ export interface Params {
   } & Record<string, string>
 }
 
-const tryGet = <T>(target: T | (() => T)) => {
+const tryGet = <T>(target: T | ((_?: any) => T), ...args: any) => {
   if (!target) {
     return null
   }
   if (target instanceof Function) {
-    return target()
+    return target(...args)
   }
   return target
 }
 
-export default (option) => {
-  const info = { git: utils.getGitInfo() }
+type ValueFn<T> = T | ((..._: any) => T)
+
+export interface Options {
+  config: ValueFn<MiniProgramCI.IProject>
+  formatVersion: (info: Info) => string
+  formatDesc: (info: Info) => string
+  robot: ValueFn<number>
+  setting: ValueFn<MiniProgramCI.ICompileSettings>
+}
+
+export default async (option: Options) => {
+  const info: Info = { git: utils.getGitInfo() }
   const {
     config: setupConfig, setting: uploadSetting,
-    formatVersion, formatDesc,
+    formatVersion, formatDesc, robot: robotRaw,
   } = option
 
-  let config = tryGet<MiniProgramCI.IProject | null>(setupConfig)
-  let setting = tryGet<MiniProgramCI.ICompileSettings | null>(uploadSetting)
+  let config = tryGet<MiniProgramCI.IProject | null>(setupConfig, info)
+  let setting = tryGet<MiniProgramCI.ICompileSettings | null>(uploadSetting, info)
+  let robot = tryGet<number>(robotRaw, info)
 
   checkConfig(config)
 
   const uploadConfig = {
     desc: formatDesc(info),
     version: formatVersion(info),
+    robot: robot ?? 1,
     setting: setting ?? {
       es6: true,
       es7: true,
@@ -65,5 +85,7 @@ export default (option) => {
   devLog(argv)
 
   const project = new ci.Project(config)
-  ci.upload({ project, ...uploadConfig })
+  const uploadResult = await ci.upload({ project, ...uploadConfig })
+
+  log(uploadResult)
 }
