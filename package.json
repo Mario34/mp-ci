@@ -1,6 +1,6 @@
 {
   "name": "@mario34/mp-ci",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "微信小程序ci",
   "main": "lib/index.js",
   "author": "Mario34",
