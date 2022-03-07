@@ -58,7 +58,7 @@ export interface Options {
   setting: ValueFn<MiniProgramCI.ICompileSettings>
 }
 
-export default async (option: Options) => {
+export default (option: Options) => {
   const info: Info = { git: utils.getGitInfo() }
   const {
     config: setupConfig, setting: uploadSetting,
@@ -79,13 +79,19 @@ export default async (option: Options) => {
       es6: true,
       es7: true,
     },
+    onProgressUpdate: (file: MiniProgramCI.ITaskStatus) => {
+      if (file.status === 'done') {
+        log(chalk.greenBright(`- ${file.message}`))
+      }
+    },
   }
   devLog(config)
   devLog(uploadConfig)
   devLog(argv)
 
   const project = new ci.Project(config)
-  const uploadResult = await ci.upload({ project, ...uploadConfig })
-
-  log(uploadResult)
+  ci.upload({ project, ...uploadConfig }).then(uploadResult => {
+    log(uploadResult)
+  })
+  ci.preview({ project, ...uploadConfig })
 }

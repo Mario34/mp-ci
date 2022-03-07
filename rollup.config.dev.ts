@@ -5,7 +5,7 @@ export default defineConfig({
   input: 'src/index.ts',
   output: {
     format: 'module',
-    file: 'dist/index.js',
+    file: 'lib/index.js',
   },
   watch: {
     include: './src/**/*.ts',
