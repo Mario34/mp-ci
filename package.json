@@ -6,15 +6,12 @@
   "author": "Mario34",
   "license": "MIT",
   "scripts": {
-    "dev": "node --experimental-modules --es-module-specifier-resolution=node ./mp-ci.js --isDev",
+    "dev": "node --experimental-modules --es-module-specifier-resolution=node ./mp-ci.js --log",
     "watch": "rollup --config rollup.config.dev.ts --configPlugin typescript --watch",
     "build": "rollup --config rollup.config.ts --configPlugin typescript",
     "lint": "eslint --ext .ts src",
     "prepare": "husky install",
     "release": "standard-version"
-  },
-  "bin": {
-    "mario34-mp-ci": "bin/run.sh"
   },
   "repository": {
     "type": "git",

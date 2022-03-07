@@ -13,8 +13,7 @@ export default defineConfig({
   plugins: [
     tsPlugin({
       tsconfig: './tsconfig.json',
-      outDir: './lib',
-      declaration: false,
+      outDir: './',
     }),
   ],
 })

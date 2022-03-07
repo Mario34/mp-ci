@@ -1,6 +1,6 @@
 import packageJson from './package.json'
 import path from 'path'
-import run from './dist/index.js'
+import run, { getRobot } from './dist/index.js'
 
 run({
   config() {
@@ -12,12 +12,14 @@ run({
       ignores: ['node_modules/**/*'],
     }
   },
-  formatVersion(info) {
-    console.log(info)
+  formatVersion() {
     return packageJson.version
   },
   formatDesc() {
     return packageJson.version
+  },
+  robot(info) {
+    return getRobot(info.git.branch)
   },
   setting: {
     es6: true,
