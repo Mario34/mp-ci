@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/Mario34/mp-ci/compare/v1.2.1...v1.2.2) (2022-03-15)
+
+### [1.2.1](https://github.com/Mario34/mp-ci/compare/v1.2.0...v1.2.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* exit on upload faild ([768ae57](https://github.com/Mario34/mp-ci/commit/768ae57f758d28afac081b2ee53b1542634f1644))
+
 ## [1.2.0](https://github.com/Mario34/mp-ci/compare/v1.1.1...v1.2.0) (2022-03-07)
 
 
