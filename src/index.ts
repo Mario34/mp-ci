@@ -92,6 +92,16 @@ export default (option: Options) => {
   const project = new ci.Project(config)
   ci.upload({ project, ...uploadConfig }).then(uploadResult => {
     log(uploadResult)
+  }).catch(() => {
+    process.exit(1)
   })
-  ci.preview({ project, ...uploadConfig })
+  ci.preview({
+    project,
+    ...uploadConfig,
+    onProgressUpdate() {
+      // no console
+    },
+  }).catch(() => {
+    process.exit(1)
+  })
 }
